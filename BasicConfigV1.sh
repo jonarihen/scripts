@@ -3,8 +3,8 @@
 # Run this script with sudo privileges
 
 # 1. Networking
-ip addr add <Your-IP-Here>/24 dev <Your-Interface-Here>
-ip route add default via <Your-Gateway-Here>
+#ip addr add <Your-IP-Here>/24 dev <Your-Interface-Here>
+#ip route add default via <Your-Gateway-Here>
 # Replace <Your-IP-Here>, <Your-Netmask-Here>, and <Your-Gateway-Here> with actual values. 
 # For permanent configuration, you'll need to edit /etc/network/interfaces or netplan configs depending on your Ubuntu version
 
