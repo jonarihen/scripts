@@ -9,7 +9,8 @@ ip route add default via <Your-Gateway-Here>
 # For permanent configuration, you'll need to edit /etc/network/interfaces or netplan configs depending on your Ubuntu version
 
 # 2. Set Hostname
-hostnamectl set-hostname <Your-Hostname-Here>
+read -p "Enter the hostname you want here <|8-D : " hostname
+hostnamectl set-hostname $hostname
 # Replace <Your-Hostname-Here> with your desired hostname
 
 # 3. Update All Packages
@@ -18,7 +19,7 @@ apt update && apt upgrade -y
 # 4. System Hardening
 
 ## Lock fstab
-chattr +i /etc/fstab
+echo "tmpfs /run/shm tmpfs defaults,noexec,nosuid 0 0" >> /etc/fstab
 
 ## Disable root login via SSH (Assuming /etc/ssh/sshd_config exists and is the SSH config file)
 sed -i 's/PermitRootLogin yes/PermitRootLogin no/g' /etc/ssh/sshd_config
