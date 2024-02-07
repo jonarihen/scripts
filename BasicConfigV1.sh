@@ -2,7 +2,7 @@
 #how to run
 #git clone https://github.com/jonarihen/scripts.git
 
-# Run this script with sudo privileges
+# Run this script as root.
 
 # 1. Update All Packages
 apt update && apt upgrade -y
