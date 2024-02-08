@@ -37,7 +37,7 @@ mysql -e "FLUSH PRIVILEGES;"
 
 # Download and extract WordPress
 cd /tmp
-curl -O https://wordpress.org/latest.tar.gz
+wget https://wordpress.org/latest.tar.gz
 tar xzvf latest.tar.gz
 
 # Copy WordPress files to the Apache document root
