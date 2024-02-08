@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #how to run
 #git clone https://github.com/jonarihen/scripts.git
 
