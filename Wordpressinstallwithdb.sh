@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #how to run
 #git clone https://github.com/jonarihen/scripts.git
 
@@ -9,6 +9,7 @@
 apt update
 
 # Install Apache2
+
 apt install apache2 -y
 
 #Allow Apache trafic into server
