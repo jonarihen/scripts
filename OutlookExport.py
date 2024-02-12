@@ -1,14 +1,16 @@
-from exchangelib import Credentials, Account, FileAttachment, FolderCollection, DELEGATE
-import os
+from exchangelib import Credentials, Account, Configuration, FileAttachment, DELEGATE
 
 # Define your Exchange Online credentials
-credentials = Credentials('your.email@example.com', 'yourpassword')
+credentials = Credentials('alexw@w4ns.com', 'newRoper3349')
 
-# Create an account object
-account = Account('your.email@example.com', credentials=credentials, autodiscover=True, access_type=DELEGATE)
+# Define the configuration with your server details
+config = Configuration(server='outlook.office365.com', credentials=credentials)
+
+# Create an account object with the configuration
+account = Account('alexw@w4ns.com', config=config, autodiscover=False, access_type=DELEGATE)
 
 # Define the directory where attachments will be saved
-save_path = 'C:/path/to/save/attachments/'
+save_path = 'C:/alexwexport/'
 
 def save_attachment(message, attachment):
     # Create the folder path based on the folder hierarchy in Outlook
