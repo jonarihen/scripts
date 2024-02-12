@@ -9,6 +9,7 @@
 apt update
 
 # Install Apache2
+
 apt install apache2 -y
 
 #Allow Apache trafic into server
