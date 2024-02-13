@@ -7,6 +7,9 @@
 # 1. Update All Packages
 apt update && apt upgrade -y
 
+#1.1 Install basic packages.
+apt install curl -y
+
 # 2. Set Hostname
 read -p "Enter the hostname you want here <|8-D : " hostname
 hostnamectl set-hostname $hostname
