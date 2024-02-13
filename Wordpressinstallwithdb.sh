@@ -55,6 +55,28 @@ sed -i "s/database_name_here/${DBNAME}/" /var/www/html/wp-config.php
 sed -i "s/username_here/${DBUSER}/" /var/www/html/wp-config.php
 sed -i "s/password_here/${DBPASS}/" /var/www/html/wp-config.php
 
+
+# Download WordPress secret keys
+wget -O /tmp/wp_keys.txt https://api.wordpress.org/secret-key/1.1/salt/
+
+# Insert the keys into wp-config.php
+sed -i '/AUTH_KEY/d' /var/www/html/wp-config.php
+sed -i '/SECURE_AUTH_KEY/d' /var/www/html/wp-config.php
+sed -i '/LOGGED_IN_KEY/d' /var/www/html/wp-config.php
+sed -i '/NONCE_KEY/d' /var/www/html/wp-config.php
+sed -i '/AUTH_SALT/d' /var/www/html/wp-config.php
+sed -i '/SECURE_AUTH_SALT/d' /var/www/html/wp-config.php
+sed -i '/LOGGED_IN_SALT/d' /var/www/html/wp-config.php
+sed -i '/NONCE_SALT/d' /var/www/html/wp-config.php
+sed -i "/^\/\* That's all, stop editing! Happy publishing. \*\//r /tmp/wp_keys.txt" /var/www/html/wp-config.php
+
+# Clean up
+rm /tmp/wp_keys.txt
+
+echo "Secret keys added to wp-config.php."
+
+
+
 # Remove the existing index.html file
 rm /var/www/html/index.html
 
