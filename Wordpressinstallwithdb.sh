@@ -83,4 +83,39 @@ rm /var/www/html/index.html
 # Restart Apache to apply all changes
 systemctl restart apache2
 
+
+
+# Create Apache configuration for your WordPress site
+echo "Creating Apache site configuration..."
+bash -c 'cat > /etc/apache2/sites-available/wordpress.conf << EOF
+<VirtualHost *:80>
+    DocumentRoot /var/www/html
+    <Directory /var/www/html>
+        Options FollowSymLinks
+        AllowOverride Limit Options FileInfo
+        DirectoryIndex index.php
+        Require all granted
+    </Directory>
+    <Directory /var/www/html/wp-content>
+        Options FollowSymLinks
+        Require all granted
+    </Directory>
+</VirtualHost>
+EOF'
+
+# Enable the site and required Apache modules
+
+echo "Enabling site henningsen.work..."
+a2dissite 000-default.conf
+a2ensite wordpress.conf
+echo "Enabling mod_rewrite..."
+
+# Reload Apache to apply changes
+echo "Reloading Apache..."
+systemctl reload apache2
+
+# Any additional steps...
+
+
+
 echo "LAMP stack and WordPress installed successfully."
