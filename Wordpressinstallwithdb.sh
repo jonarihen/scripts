@@ -19,7 +19,7 @@ ufw allow in "Apache"
 apt install mysql-server -y
 
 # Install PHP and its extensions required by WordPress
-apt install php-curl php-gd php-mbstring php-xml php-xmlrpc php-soap php-intl php-zip -y
+apt install php libapache2-mod-php php-mysql php-curl php-gd php-mbstring php-xml php-xmlrpc php-soap php-intl php-zip -y
 
 # Restart Apache to apply PHP installation
 systemctl restart apache2
@@ -106,7 +106,7 @@ EOF'
 
 # Enable the site and required Apache modules
 
-echo "Enabling site henningsen.work..."
+echo "Enabling site..."
 a2dissite 000-default.conf
 a2ensite wordpress.conf
 echo "Enabling mod_rewrite..."
