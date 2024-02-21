@@ -31,7 +31,7 @@ read -p "What should the password be ? : " DBPASS
 
 # Replace 'password' with a secure password of your choosing
 
-mysql -e "CREATE DATABASE ${DBNAME};"
+mysql -e "CREATE DATABASE ${DBNAME} DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;"
 mysql -e "CREATE USER '${DBUSER}'@'localhost' IDENTIFIED BY '${DBPASS}';"
 mysql -e "GRANT ALL PRIVILEGES ON ${DBNAME}.* TO '${DBUSER}'@'localhost';"
 mysql -e "FLUSH PRIVILEGES;"
