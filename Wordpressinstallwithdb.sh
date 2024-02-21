@@ -91,6 +91,7 @@ bash -c 'cat > /etc/apache2/sites-available/wordpress.conf << EOF
 <VirtualHost *:80>
     DocumentRoot /var/www/html
     <Directory /var/www/html>
+        AllowOverride All
         Options FollowSymLinks
         AllowOverride Limit Options FileInfo
         DirectoryIndex index.php
@@ -109,6 +110,7 @@ echo "Enabling site henningsen.work..."
 a2dissite 000-default.conf
 a2ensite wordpress.conf
 echo "Enabling mod_rewrite..."
+sudo a2enmod rewrite
 
 # Reload Apache to apply changes
 echo "Reloading Apache..."
