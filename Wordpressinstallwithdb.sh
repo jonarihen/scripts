@@ -46,8 +46,7 @@ cp -a /tmp/wordpress/. /var/www/html
 
 # Set permissions
 chown -R www-data:www-data /var/www/html
-find /var/www/html -type d -exec chmod 750 {} \;
-find /var/www/html -type f -exec chmod 640 {} \;
+chmod -R 750 /var/www/html
 
 # Configure WordPress to connect to the database
 cp /var/www/html/wp-config-sample.php /var/www/html/wp-config.php
