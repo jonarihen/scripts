@@ -8,9 +8,6 @@
 # Update package index
 apt update
 
-apt upgrade -y
-
-
 # Install Apache2
 
 apt install apache2 -y
