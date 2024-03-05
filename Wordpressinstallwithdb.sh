@@ -29,28 +29,12 @@ read -p "What should the DB name be ? : " DBNAME
 read -p "What should the username be ? : " DBUSER
 read -p "What should the password be ? : " DBPASS
 
-# Prompt for the root password
-read -sp 'Enter the ipaddres or hostname of sql: ' remote_server
-read -sp 'Enter SSH enabled username: ' ssh_user
-read -sp 'Enter Root Password: ' root_pass
+# Replace 'password' with a secure password of your choosing
 
-# SSH command prefix for running commands on the remote MySQL server
-SSH_CMD="ssh $ssh_user@$remote_server"
-
-# Example of using the entered password with su to run a command as root
-$SSH_CMD 'echo $root_pass | su -c 'whoami' root'
-
-# Check if MySQL is installed on the remote server
-$SSH_CMD 'mysql --version || sudo apt-get install mysql-server -y'
-
-# Create the WordPress database and user on the remote server
-$SSH_CMD "mysql -e \"CREATE DATABASE ${DBNAME} DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;\""
-$SSH_CMD "mysql -e \"CREATE USER '${DBUSER}'@'%' IDENTIFIED BY '${DBPASS}';\""
-$SSH_CMD "mysql -e \"GRANT ALL PRIVILEGES ON ${DBNAME}.* TO '${DBUSER}'@'%';\""
-$SSH_CMD "mysql -e \"FLUSH PRIVILEGES;\""
-
-# Ensure the wp-config.php is updated to use the remote database server
-sed -i "s/localhost/$remote_server/" /var/www/html/wp-config.php
+mysql -e "CREATE DATABASE ${DBNAME} DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;"
+mysql -e "CREATE USER '${DBUSER}'@'localhost' IDENTIFIED BY '${DBPASS}';"
+mysql -e "GRANT ALL PRIVILEGES ON ${DBNAME}.* TO '${DBUSER}'@'localhost';"
+mysql -e "FLUSH PRIVILEGES;"
 
 # Download and extract WordPress
 cd /tmp
