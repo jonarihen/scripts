@@ -15,9 +15,6 @@ apt install apache2 -y
 #Allow Apache trafic into server
 ufw allow in "Apache"
 
-# Install MySQL
-apt install mysql-server -y
-
 # Install PHP and its extensions required by WordPress
 apt install php libapache2-mod-php php-mysql php-curl php-gd php-mbstring php-xml php-xmlrpc php-soap php-intl php-zip -y
 
@@ -30,15 +27,14 @@ read -p "What should the username be ? : " DBUSER
 read -p "What should the password be ? : " DBPASS
 
 # Prompt for the root password
-read -sp 'Enter the ipaddres or hostname of sql: ' remote_server
-read -sp 'Enter SSH enabled username: ' ssh_user
-read -sp 'Enter Root Password: ' root_pass
+read -p 'Enter the ipaddres or hostname of sql: ' remote_server
+read -p 'Enter SSH enabled username: ' ssh_user
 
 # SSH command prefix for running commands on the remote MySQL server
 SSH_CMD="ssh $ssh_user@$remote_server"
 
 # Example of using the entered password with su to run a command as root
-$SSH_CMD 'echo $root_pass | su -c 'whoami' root'
+$SSH_CMD 'su'
 
 # Check if MySQL is installed on the remote server
 $SSH_CMD 'mysql --version || sudo apt-get install mysql-server -y'
