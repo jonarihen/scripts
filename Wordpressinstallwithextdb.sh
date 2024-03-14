@@ -34,7 +34,7 @@ read -p 'Enter SSH enabled username: ' ssh_user
 SSH_CMD="ssh $ssh_user@$remote_server"
 
 # Example of using the entered password with su to run a command as root
-$SSH_CMD 'su'
+$SSH_CMD 'su -c 'whoami' root'
 
 # Check if MySQL is installed on the remote server
 $SSH_CMD 'mysql --version || sudo apt-get install mysql-server -y'
