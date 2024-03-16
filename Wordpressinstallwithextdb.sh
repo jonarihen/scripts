@@ -34,7 +34,7 @@ read -p 'Enter SSH enabled username: ' ssh_user
 ssh $ssh_user@$remote_server
 
 # Example of using the entered password with su to run a command as root
-su
+su root
 
 # Check if MySQL is installed on the remote server
 mysql --version || sudo apt-get install mysql-server -y
